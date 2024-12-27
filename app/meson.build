@@ -5,6 +5,7 @@ project('usbkvm', ['cpp', 'c'],
 )
 
 is_windows = target_machine.system() == 'windows'
+is_darwin = target_machine.system() == 'darwin'
 
 
 cxx = meson.get_compiler('cpp')
@@ -12,7 +13,7 @@ gtk3 = dependency('gtk+-3.0', version: '>=3.22')
 gtkmm = dependency('gtkmm-3.0', version: '>=3.0.0')
 glibmm = dependency('glibmm-2.4')
 gst = dependency('gstreamer-1.0')
-if is_windows
+if is_windows or is_darwin
 	hidapi = dependency('hidapi')
 else
 	hidapi = dependency('hidapi-hidraw')
